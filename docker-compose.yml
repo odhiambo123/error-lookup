@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  error-lookup-app:
+    build: .
+    container_name: error-lookup
+    ports:
+      - "8501:8501"
+    volumes:
+      # Map the local database file to the container's database file
+      # This ensures your data persists even if the container is stopped or rebuilt
+      - ./error_codes.db:/app/error_codes.db
+    restart: unless-stopped
